@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>পুলিশ লাইন্স স্কুল অ্যান্ড কলেজ, নাটোর — আধুনিক ওয়েবসাইট</title>
+    <meta name="description"
+        content="পুলিশ লাইন্স স্কুল অ্যান্ড কলেজ, নাটোর — নোটিশ, গ্যালারি, ভর্তি, শিক্ষক তালিকা, যোগাযোগ।" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand: #0a5cd6;
+            /* primary */
+            --brand-2: #0e3f9a;
+            /* dark */
+            --accent: #ffd54f;
+            /* accent */
+            --bg: #f7f9fc;
+            /* page */
+            --card: #ffffff;
+            /* surfaces */
+            --text: #1d2433;
+            /* body */
+            --muted: #64748b;
+            /* secondary */
+            --success: #16a34a;
+            --danger: #e11d48;
+            --warning: #f59e0b;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(2, 8, 23, .08);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0
+        }
+
+        body {
+            font-family: "Noto Sans Bengali", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        /* Container */
+        .container {
+            width: min(1200px, 92%);
+            margin: 0 auto
+        }
+
+        /* Topbar */
+        .topbar {
+            background: var(--brand);
+            color: #fff
+        }
+
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .5rem 0
+        }
+
+        .topbar small {
+            opacity: .9
+        }
+
+        .mode-toggle {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .5);
+            color: #fff;
+            border-radius: 999px;
+            padding: .35rem .75rem;
+            cursor: pointer
+        }
+
+        /* Header / Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #ffffffcc;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eef2f7
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .75rem
+        }
+
+        .brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px
+        }
+
+        .brand .title {
+            font-weight: 800;
+            font-size: 1.05rem
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            align-items: center
+        }
+
+        nav a {
+            padding: .5rem .75rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #0f172a
+        }
+
+        nav a:hover {
+            background: #eef2ff
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.6rem;
+            padding: .35rem .55rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            background: #fff
+        }
+
+        @media(max-width:900px) {
+            nav {
+                position: fixed;
+                inset: 64px 0 auto 0;
+                background: #fff;
+                border-top: 1px solid #e2e8f0;
+                display: none
+            }
+
+            nav.open {
+                display: block
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 1rem
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: calc(var(--radius) + 8px);
+            margin: 18px 0 10px
+        }
+
+        .slides {
+            position: relative;
+            height: 56vh;
+            min-height: 380px
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity .7s ease
+        }
+
+        .slide.active {
+            opacity: 1
+        }
+
+        .slide .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, .55))
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .hero-caption {
+            position: absolute;
+            inset: auto 0 0 0;
+            color: #fff;
+            padding: 2rem;
+            z-index: 2
+        }
+
+        .hero-caption h1 {
+            font-size: clamp(1.6rem, 3.6vw, 3rem);
+            line-height: 1.2;
+            margin: 0 0 .5rem
+        }
+
+        .hero-caption p {
+            opacity: .95;
+            max-width: 800px
+        }
+
+        .cta-row {
+            display: flex;
+            gap: .75rem;
+            margin-top: 1rem
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .75rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #0f172a;
+            font-weight: 700;
+            box-shadow: var(--shadow)
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            border-color: #fef3c7
+        }
+
+        /* Quick stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 24px 0
+        }
+
+        .stat {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            box-shadow: var(--shadow);
+            text-align: center
+        }
+
+        .stat h3 {
+            margin: .2rem 0 0;
+            font-size: 1rem;
+            color: var(--muted)
+        }
+
+        .stat .num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--brand)
+        }
+
+        @media(max-width:800px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0 0 16px
+        }
+
+        .grid {
+            display: grid;
+            gap: 1rem
+        }
+
+        /* Notice board */
+        .notice-wrap {
+            display: grid;
+            grid-template-columns: 1.6fr .9fr;
+            gap: 1rem
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem
+        }
+
+        .notice-list {
+            display: grid;
+            gap: .75rem;
+            max-height: 420px;
+            overflow: auto;
+            padding-right: .5rem
+        }
+
+        .notice {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: .75rem;
+            align-items: center;
+            padding: .65rem .75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px
+        }
+
+        .badge {
+            font-size: .75rem;
+            padding: .25rem .5rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #1e3a8a;
+            font-weight: 700
+        }
+
+        .date {
+            font-weight: 700;
+            color: var(--muted)
+        }
+
+        .notice a {
+            color: var(--brand);
+            font-weight: 700
+        }
+
+        .upcoming {
+            display: grid;
+            gap: .75rem
+        }
+
+        .event {
+            display: flex;
+            gap: .75rem;
+            align-items: center;
+            padding: .6rem .75rem;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px
+        }
+
+        /* About cards */
+        .about-grid {
+            grid-template-columns: repeat(3, 1fr)
+        }
+
+        .about-card {
+            display: grid;
+            gap: .5rem;
+            text-align: center
+        }
+
+        .about-card img {
+            border-radius: 14px;
+            height: 220px;
+            object-fit: cover
+        }
+
+        .about-card h4 {
+            margin: .35rem 0 0;
+            font-weight: 800
+        }
+
+        @media(max-width:900px) {
+            .about-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* Teacher Directory */
+        .searchbar {
+            display: flex;
+            gap: .5rem;
+            margin-bottom: 1rem
+        }
+
+        .searchbar input {
+            flex: 1;
+            padding: .75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        .table th,
+        .table td {
+            padding: .7rem .6rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left
+        }
+
+        .table th {
+            background: #f1f5f9
+        }
+
+        /* Gallery */
+        .gallery {
+            grid-template-columns: repeat(4, 1fr)
+        }
+
+        .tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px
+        }
+
+        .tile img {
+            height: 190px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform .35s
+        }
+
+        .tile:hover img {
+            transform: scale(1.06)
+        }
+
+        @media(max-width:900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            display: none;
+            place-items: center;
+            z-index: 100
+        }
+
+        .lightbox.open {
+            display: grid
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 16px
+        }
+
+        /* Admission form */
+        .form {
+            display: grid;
+            gap: 1rem
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: .75rem
+        }
+
+        .form input,
+        .form select,
+        .form textarea {
+            padding: .9rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px
+        }
+
+        .form .actions {
+            display: flex;
+            gap: .75rem;
+            justify-content: flex-end
+        }
+
+        /* Footer */
+        footer {
+            background: var(--brand-2);
+            color: #cbd5e1
+        }
+
+        footer .brandline {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 12px
+        }
+
+        footer a {
+            color: #e2e8f0
+        }
+
+        /* Back to top */
+        .backtop {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            padding: .7rem .85rem;
+            background: var(--brand);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            display: none;
+            box-shadow: var(--shadow)
+        }
+
+        .backtop.show {
+            display: inline-flex
+        }
+
+        /* Dark mode */
+        body.dark {
+            --bg: #0b1220;
+            --card: #0f172a;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --brand: #7aa2ff;
+            --brand-2: #0b1220;
+            --accent: #fde047
+        }
+
+        body.dark header {
+            background: #0f172acc;
+            border-color: #1f2937
+        }
+
+        body.dark nav a {
+            color: #e5e7eb
+        }
+
+        body.dark .btn {
+            background: #111827;
+            color: #e5e7eb;
+            border-color: #1f2937
+        }
+
+        body.dark .stat {
+            box-shadow: none;
+            border: 1px solid #1f2937
+        }
+
+        body.dark .table th {
+            background: #0b1220
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <small>পুলিশ লাইন্স স্কুল অ্যান্ড কলেজ, নাটোর</small>
+            <button class="mode-toggle" id="modeToggle" aria-label="Toggle dark mode">ডার্ক/লাইট</button>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&q=60"
+                    alt="PLSCN Logo placeholder" />
+                <div class="title">Police Lines School & College, Natore</div>
+            </div>
+            <button class="hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">প্রথম পাতা</a></li>
+                    <li><a href="#notice">নোটিশ</a></li>
+                    <li><a href="#about">আমাদের তথ্য</a></li>
+                    <li><a href="#teachers">শিক্ষক</a></li>
+                    <li><a href="#gallery">গ্যালারি</a></li>
+                    <li><a href="#admission">ভর্তি</a></li>
+                    <li><a href="#contact">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero / Carousel -->
+    <main id="home" class="container">
+        <section class="hero">
+            <div class="slides" id="slides">
+                <figure class="slide active">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600"
+                        alt="ক্যাম্পাস" />
+                    <div class="overlay"></div>
+                    <figcaption class="hero-caption container">
+                        <h1>শিক্ষা, শৃঙ্খলা ও মানবতা</h1>
+                        <p>ভবিষ্যৎ নেতৃত্ব গড়তে আমরা প্রতিশ্রুতিবদ্ধ — আধুনিক শ্রেণীকক্ষ, অভিজ্ঞ শিক্ষক, সহশিক্ষা ও
+                            নৈতিকতা।</p>
+                        <div class="cta-row">
+                            <a class="btn primary" href="#admission">অনলাইনে ভর্তি</a>
+                            <a class="btn" href="#notice">সর্বশেষ নোটিশ</a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="https://images.unsplash.com/photo-1606326608695-8eaa1961bb7d?q=80&w=1600"
+                        alt="খেলাধুলা" />
+                    <div class="overlay"></div>
+                    <figcaption class="hero-caption container">
+                        <h1>সহশিক্ষা ও ক্রীড়া</h1>
+                        <p>বার্ষিক ক্রীড়া প্রতিযোগিতা, স্কাউটস, বিতর্ক—শিক্ষার্থীদের সামগ্রিক বিকাশে বিশেষ উদ্যোগ।</p>
+                        <div class="cta-row">
+                            <a class="btn" href="#gallery">গ্যালারি দেখুন</a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1600"
+                        alt="লাইব্রেরি" />
+                    <div class="overlay"></div>
+                    <figcaption class="hero-caption container">
+                        <h1>সমৃদ্ধ লাইব্রেরি ও ল্যাব</h1>
+                        <p>সায়েন্স ল্যাব, কম্পিউটার ল্যাব ও ডিজিটাল লাইব্রেরির সুবিধা—শেখা হবে আরও আনন্দময়।</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section aria-label="Quick stats" class="stats" id="stats">
+            <div class="stat">
+                <div class="num" data-count="2400">0</div>
+                <h3>শিক্ষার্থী</h3>
+            </div>
+            <div class="stat">
+                <div class="num" data-count="120">0</div>
+                <h3>শিক্ষক-কর্মচারী</h3>
+            </div>
+            <div class="stat">
+                <div class="num" data-count="46">0</div>
+                <h3>প্রতি বছরের সাফল্য</h3>
+            </div>
+            <div class="stat">
+                <div class="num" data-count="15">0</div>
+                <h3>ক্লাব/সোসাইটি</h3>
+            </div>
+        </section>
+
+        <!-- Notices & Events -->
+        <section id="notice">
+            <h2 class="section-title">সর্বশেষ নোটিশ</h2>
+            <div class="notice-wrap">
+                <div class="card">
+                    <div class="notice-list" id="noticeList"></div>
+                    <div style="display:flex; justify-content:flex-end; gap:.5rem; margin-top:10px">
+                        <a class="btn" href="#">সব নোটিশ</a>
+                    </div>
+                </div>
+                <aside class="card">
+                    <h3 style="margin-top:0">আসন্ন ইভেন্ট</h3>
+                    <div class="upcoming" id="events"></div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- About / Leadership -->
+        <section id="about">
+            <h2 class="section-title">আমাদের তথ্য</h2>
+            <div class="grid about-grid">
+                <article class="card about-card">
+                    <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=900" alt="প্রতিষ্ঠাতা" />
+                    <h4>প্রতিষ্ঠাতা</h4>
+                    <p><strong>বিপ্লব বিজয় তালুকদার</strong></p>
+                    <p>বিদ্যালয়ের উন্নয়নে দৃষ্টান্ত স্থাপন।</p>
+                </article>
+                <article class="card about-card">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900" alt="সভাপতি" />
+                    <h4>সভাপতি</h4>
+                    <p><strong>মোহাম্মদ আমজাদ হোসাইন, পিপিএম</strong></p>
+                    <p>শিক্ষা পরিচালনা ও তত্ত্বাবধান।</p>
+                </article>
+                <article class="card about-card">
+                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=900"
+                        alt="অধ্যক্ষ (ভারপ্রাপ্ত)" />
+                    <h4>অধ্যক্ষ (ভারপ্রাপ্ত)</h4>
+                    <p><strong>শোভন কুমার গোস্বামী</strong></p>
+                    <p>একাডেমিক নেতৃত্ব ও গুণগত মান নিশ্চয়তা।</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Teacher Directory -->
+        <section id="teachers">
+            <h2 class="section-title">শিক্ষক তালিকা</h2>
+            <div class="card">
+                <div class="searchbar">
+                    <input type="search" id="teacherSearch" placeholder="নাম/বিষয় দিয়ে খুঁজুন…" />
+                    <button class="btn" id="exportTeachers">CSV এক্সপোর্ট</button>
+                </div>
+                <div class="table-wrap">
+                    <table class="table" id="teacherTable" aria-label="শিক্ষক তালিকা">
+                        <thead>
+                            <tr>
+                                <th>নাম</th>
+                                <th>বিষয়</th>
+                                <th>ফোন</th>
+                                <th>ইমেইল</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery">
+            <h2 class="section-title">ফটো গ্যালারি</h2>
+            <div class="grid gallery" id="galleryGrid">
+                <div class="tile"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800"
+                        alt="ইভেন্ট ১"></div>
+                <div class="tile"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800"
+                        alt="ইভেন্ট ২"></div>
+                <div class="tile"><img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?q=80&w=800"
+                        alt="ইভেন্ট ৩"></div>
+                <div class="tile"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800"
+                        alt="ইভেন্ট ৪"></div>
+            </div>
+        </section>
+
+        <!-- Admission -->
+        <section id="admission">
+            <h2 class="section-title">অনলাইনে ভর্তি আবেদন</h2>
+            <div class="card">
+                <form class="form" id="admissionForm" novalidate>
+                    <div class="row">
+                        <input type="text" name="name" placeholder="শিক্ষার্থীর নাম *" required />
+                        <input type="date" name="dob" placeholder="জন্মতারিখ *" required />
+                    </div>
+                    <div class="row">
+                        <select name="class" required>
+                            <option value="">ভর্তির শ্রেণি নির্বাচন করুন *</noption>
+                            <option>৬ষ্ঠ</option>
+                            <option>৭ম</option>
+                            <option>৮ম</option>
+                            <option>৯ম</option>
+                            <option>১০ম</option>
+                        </select>
+                        <select name="group">
+                            <option value="">গ্রুপ (প্রযোজ্য হলে)</option>
+                            <option>বিজ্ঞান</option>
+                            <option>ব্যবসায় শিক্ষা</option>
+                            <option>মানবিক</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="guardian" placeholder="অভিভাবকের নাম *" required />
+                        <input type="tel" name="phone" placeholder="মোবাইল *" required
+                            pattern="^(?:\+?88)?01[3-9]\d{8}$" />
+                    </div>
+                    <input type="email" name="email" placeholder="ইমেইল (ঐচ্ছিক)" />
+                    <textarea name="address" rows="3" placeholder="ঠিকানা *" required></textarea>
+                    <div class="actions">
+                        <button type="reset" class="btn">রিসেট</button>
+                        <button type="submit" class="btn primary">আবেদন জমা দিন</button>
+                    </div>
+                    <p id="admissionMsg" aria-live="polite" style="margin:0;color:var(--muted)"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2 class="section-title">যোগাযোগ</h2>
+            <div class="grid" style="grid-template-columns:1.2fr .8fr; gap:1rem">
+                <div class="card">
+                    <form class="form" id="contactForm">
+                        <div class="row">
+                            <input type="text" name="cname" placeholder="আপনার নাম *" required />
+                            <input type="email" name="cemail" placeholder="ইমেইল *" required />
+                        </div>
+                        <input type="text" name="subject" placeholder="বিষয় *" required />
+                        <textarea name="cmsg" rows="4" placeholder="বার্তা *" required></textarea>
+                        <div class="actions">
+                            <button type="reset" class="btn">মুছুন</button>
+                            <button type="submit" class="btn primary">পাঠান</button>
+                        </div>
+                        <p id="contactMsg" aria-live="polite" style="margin:0;color:var(--muted)"></p>
+                    </form>
+                </div>
+                <aside class="card">
+                    <h3 style="margin-top:0">গুরুত্বপূর্ণ লিঙ্ক</h3>
+                    <ul style="list-style:none; padding:0; display:grid; gap:.5rem">
+                        <li>🔗 <a href="https://bangladesh.gov.bd" target="_blank" rel="noreferrer">Bangladesh Gov</a>
+                        </li>
+                        <li>🔗 <a href="https://www.rajshahieducationboard.gov.bd" target="_blank"
+                                rel="noreferrer">Rajshahi Education Board</a></li>
+                        <li>🔗 <a href="https://www.educationboardresults.gov.bd" target="_blank" rel="noreferrer">Board
+                                Results</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container" style="padding:30px 0">
+            <div class="brandline">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=120&q=60" alt="logo" width="32"
+                    height="32" />
+                <strong>পুলিশ লাইন্স স্কুল অ্যান্ড কলেজ, নাটোর</strong>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between">
+                <small>© <span id="year"></span> PLSCN — সর্বস্বত্ব সংরক্ষিত</small>
+                <small>Developed with ❤ by Your Name</small>
+            </div>
+        </div>
+    </footer>
+
+    <button class="backtop" id="backTop" aria-label="Back to top">↑</button>
+
+    <div class="lightbox" id="lightbox"><img alt="preview" /></div>
+
+    <script>
+        // Helper: qs
+        const qs = (s, sc = document) => sc.querySelector(s);
+        const qsa = (s, sc = document) => [...sc.querySelectorAll(s)];
+
+        // Mobile nav toggle
+        qs('#menuBtn').addEventListener('click', () => qs('#nav').classList.toggle('open'));
+
+        // Dark/Light mode
+        const modeKey = 'plscn-mode';
+        const setMode = (m) => { document.body.classList.toggle('dark', m === 'dark'); localStorage.setItem(modeKey, m); };
+        setMode(localStorage.getItem(modeKey) || 'light');
+        qs('#modeToggle').addEventListener('click', () => setMode(document.body.classList.contains('dark') ? 'light' : 'dark'));
+
+        // Back to top
+        const backTop = qs('#backTop');
+        window.addEventListener('scroll', () => {
+            backTop.classList.toggle('show', window.scrollY > 500);
+        });
+        backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Hero slider
+        let idx = 0; const slides = qsa('.slide');
+        setInterval(() => { slides[idx].classList.remove('active'); idx = (idx + 1) % slides.length; slides[idx].classList.add('active'); }, 5000);
+
+        // Year
+        qs('#year').textContent = new Date().getFullYear();
+
+        // Counter animation
+        const counters = qsa('.num');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const el = e.target; const target = +el.dataset.count; let n = 0; const step = Math.max(1, Math.floor(target / 100));
+                    const t = setInterval(() => { n += step; if (n >= target) { n = target; clearInterval(t); } el.textContent = n.toLocaleString('bn-BD'); }, 20);
+                    io.unobserve(el);
+                }
+            })
+        }, { threshold: .3 });
+        counters.forEach(c => io.observe(c));
+
+        // Sample data (Replace with live data or CMS later)
+        const notices = [
+            { title: '২৬শে মার্চ মহান স্বাধীনতা দিবস উপলক্ষে রচনা লিখন অংশগ্রহণ', date: '2025-03-07', tag: 'একাডেমিক', url: '#' },
+            { title: 'স্বাধীনতা দিবসে রচনা, চিত্রাংকন, কুইজ প্রতিযোগিতা', date: '2025-03-07', tag: 'সহশিক্ষা', url: '#' },
+            { title: 'সরস্বতী পূজা উপলক্ষে ছুটি', date: '2025-02-02', tag: 'ছুটি', url: '#' },
+            { title: 'শব-ই-মেরাজ উপলক্ষে ছুটি', date: '2025-01-27', tag: 'ছুটি', url: '#' },
+            { title: '২০২৬ সালের এসএসসি পুনর্বিন্যাসকৃত পাঠ্যসূচি', date: '2025-01-01', tag: 'সিলেবাস', url: '#' }
+        ];
+
+        const noticeList = qs('#noticeList');
+        notices.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 😎.forEach(n => {
+            const d = new Date(n.date).toLocaleDateString('bn-BD', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            const item = document.createElement('div');
+            item.className = 'notice';
+            item.innerHTML = <span class="badge">${n.tag}</span><a href="${n.url}">${n.title}</a><span class="date">${d}</span>;
+            noticeList.appendChild(item);
+        });
+
+        // Events
+        const eventsData = [
+            { when: '১৫ সেপ্টেম্বর', what: 'বার্ষিক ক্রীড়া প্রতিযোগিতা', where: 'স্কুল মাঠ' },
+            { when: '১০ সেপ্টেম্বর', what: 'সায়েন্স ফেয়ার রেজিস্ট্রেশন শেষ', where: 'অফিস' },
+            { when: '২০ সেপ্টেম্বর', what: 'মিড-টার্ম পরীক্ষা শুরু', where: 'ক্লাসরুম' }
+        ];
+        const ev = qs('#events');
+        eventsData.forEach(e => {
+            const row = document.createElement('div'); row.className = 'event';
+            row.innerHTML = <strong>${e.when}</strong> <span>${e.what}</span> <small style="margin-left:auto; color:var(--muted)">📍 ${e.where}</small>;
+            ev.appendChild(row);
+        });
+
+        // Teachers (sample). Replace with your real data or fetch from JSON/Google Sheet API.
+        const teachers = [
+            { name: 'মোঃ আব্দুল করিম', subject: 'বাংলা', phone: '01711223344', email: 'karim@example.com' },
+            { name: 'সাবিনা ইয়াসমিন', subject: 'ইংরেজি', phone: '01722334455', email: 'sabina@example.com' },
+            { name: 'শুভ্র দাস', subject: 'পদার্থবিজ্ঞান', phone: '01733445566', email: 'shuvro@example.com' },
+            { name: 'ফারহানা হক', subject: 'গণিত', phone: '01744556677', email: 'farhana@example.com' },
+            { name: 'রাশেদুল ইসলাম', subject: 'রসায়ন', phone: '01755667788', email: 'rashed@example.com' }
+        ];
+
+        const tbody = qs('#teacherTable tbody');
+        function renderTeachers(list) {
+            tbody.innerHTML = '';
+            list.forEach(t => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = <td>${t.name}</td><td>${t.subject}</td><td>${t.phone}</td><td>${t.email}</td>;
+                tbody.appendChild(tr);
+            });
+        }
+        renderTeachers(teachers);
+
+        qs('#teacherSearch').addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            const f = teachers.filter(t => (t.name + t.subject).toLowerCase().includes(q));
+            renderTeachers(f);
+        });
+
+        // Export Teachers to CSV
+        qs('#exportTeachers').addEventListener('click', () => {
+            const header = 'নাম,বিষয়,ফোন,ইমেইল\n';
+            const rows = teachers.map(t => ${t.name},${t.subject},${t.phone},${t.email}).join('\n');
+            const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'teachers.csv'; a.click(); URL.revokeObjectURL(url);
+        });
+
+        // Lightbox for gallery
+        const lightbox = qs('#lightbox');
+        qsa('#galleryGrid img').forEach(img => {
+            img.addEventListener('click', () => { qs('#lightbox img').src = img.src; lightbox.classList.add('open'); });
+        });
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+
+        // Admission form validation (frontend only)
+        qs('#admissionForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(e.target);
+            for (const [k, v] of fd.entries()) {
+                if (['name', 'dob', 'class', 'guardian', 'phone', 'address'].includes(k) && !String(v).trim()) {
+                    qs('#admissionMsg').textContent = '⚠️ অনুগ্রহ করে সব * চিহ্নিত ঘর পূরণ করুন।';
+                    return;
+                }
+            }
+            const phone = fd.get('phone');
+            if (!/^\+?88?01[3-9]\d{8}$/.test(phone)) {
+                qs('#admissionMsg').textContent = '⚠️ সঠিক মোবাইল নম্বর লিখুন (বাংলাদেশ).';
+                return;
+            }
+            // Success (You can replace with fetch() to your backend endpoint)
+            qs('#admissionMsg').style.color = 'var(--success)';
+            qs('#admissionMsg').textContent = '✅ আবেদনটি সফলভাবে গ্রহণ করা হয়েছে! (ডেমো)';
+            e.target.reset();
+        });
+
+        // Contact form (demo)
+        qs('#contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            qs('#contactMsg').style.color = 'var(--success)';
+            qs('#contactMsg').textContent = '✅ আপনার বার্তা পাওয়া গেছে! (ডেমো)';
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
